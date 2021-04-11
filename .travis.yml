@@ -2,7 +2,7 @@ language: csharp
 solution: Flextensions.sln
 
 install:
-  - nuget restore Flextensions.sln
+  - dotnet restore Flextensions.sln
   - dotnet test
 
 before_deploy:
