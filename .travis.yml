@@ -1,0 +1,16 @@
+language: csharp
+solution: Flextensions.sln
+
+install:
+  - nuget restore Flextensions.sln
+  - dotnet test
+
+before_deploy:
+  - dotnet pack -c Release
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push ./Flextensions/bin/Release/Flextensions.*.nupkg  -k $NUGET_API -s https://api.nuget.org/v3/index.json --skip-duplicate
+  on:
+    branch: main
